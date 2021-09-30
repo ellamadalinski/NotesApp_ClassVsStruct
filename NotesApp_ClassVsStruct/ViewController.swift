@@ -29,7 +29,28 @@ class ViewController: UIViewController {
         var cash = balanceTextFieldOutlet.text!
         var client = BankAccount.init(n: blah, balance: Double(cash)!) //creating an object of the BankAccount class
         clients.append(client)
-        reportTextViewOutlet.text += "\(client.name) : \(client.balance)\n"
+        reportTextViewOutlet.text += "\(client.name) : $\(client.balance)\n"
+        
+    }
+    
+    func report(){
+        reportTextViewOutlet.text = ""
+        for c in clients{
+            reportTextViewOutlet.text += c.toString()
+        }
+    }
+    
+    
+    @IBAction func calcInterestButtonAction(_ sender: UIButton) {
+        
+        reportTextViewOutlet.text = ""
+        
+        for c in clients{
+            c.calcInterest()
+            
+        }
+        
+        report()
         
     }
     
