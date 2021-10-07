@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
     }
     
@@ -27,8 +28,16 @@ class ViewController: UIViewController {
     @IBAction func addButtonAction(_ sender: UIButton) {
         var blah = nameTextFieldOutlet.text!
         var cash = balanceTextFieldOutlet.text!
-        var client = BankAccount.init(n: blah, balance: Double(cash)!) //creating an object of the BankAccount class
+        var client = BankAccount.init(n: blah, balance: Double(cash)!, inType: .savings) //creating an object of the BankAccount class
+        client.changeType(t: .mutualFund)
+        var b = Pig()
+        b.hi(r: client)
+        
+        //BankAccount(n: <#T##String#>, balance: <#T##Double#>) //don't NEED .init
+        //building from struct
+        //var client = BankAccount2(name: "Bill", balance: 25.23) //don't need initalizer in the struct, automatically makes one with variables in class
         clients.append(client)
+        
         reportTextViewOutlet.text += "\(client.name) : $\(client.balance)\n"
         
     }
@@ -54,6 +63,7 @@ class ViewController: UIViewController {
         
     }
     
-
+        
 }
+    
 
